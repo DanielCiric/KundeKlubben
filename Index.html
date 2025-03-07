@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Dine Kundeklubber</title>
+    <link rel="stylesheet" href="./Style.css">
+</head>
+<body>
+    <!-- Forside med innlogging -->
+    <div class="login-page active">
+        <img src="https://images.unsplash.com/photo-1599658880436-c61792e70672?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Shopping bilde" class="header-image">
+        <h1>DINE KUNDEKLUBBER</h1>
+        <input type="tel" placeholder="Skriv inn telefonnummer" id="phone"
+            onkeydown="if(event.key === 'Enter') login()">
+        <br>
+        <input type="password" placeholder="Passord (valgfritt)" id="password"
+            onkeydown="if(event.key === 'Enter') login()">
+        <br>
+        <button onclick="login()">Logg inn</button>
+        <br> </br>
+        <button onclick="showRegister()">Opprett bruker</button>
+        <p class="error" id="login-error"></p>
+    </div>
+
+    <!-- Registreringsside -->
+    <div class="register-page">
+        <h1>Opprett bruker</h1>
+        <input type="tel" placeholder="Skriv inn telefonnummer" id="new-phone">
+        <br>
+        <input type="password" placeholder="Velg et passord (valgfritt)" id="new-password">
+        <br>
+        <button onclick="register()">Registrer</button>
+        <br>
+        <button onclick="showLogin()">Tilbake til innlogging</button>
+        <p class="error" id="register-error"></p>
+    </div>
+
+    <!-- Hovedside etter innlogging -->
+    <div class="main-page">
+        <div class="sidebar">
+            <h3>Meny</h3>
+            <a href="#" onclick="showOffers()">Din kundeavis</a>
+        </div>
+        <div class="content">
+            <h2>Dine kundeklubber</h2>
+            <ul class="club-list">
+                <li><img src="./Bilder/extra logo.png" alt="Coop Extra logo"><a href="https://www.coop.no/medlemsprogrammet"
+                        target="_blank">Coop Extra</a></li>
+                <li><img src="././Bilder/rema lgoo.jpg" alt="Rema 1000 logo"><a href="https://www.rema.no/ae"
+                        target="_blank">Rema 1000</a></li>
+                <li><img src="./Bilder/hm loho.png" alt="H&M Club logo"><a
+                        href="https://www.hm.com/no_no/customer-service/loyalty" target="_blank">H&M Club</a></li>
+                <li><img src="./Bilder/clas ohlson logo.png" alt="Clas Ohlson logo"><a
+                        href="https://www.clasohlson.com/no/kundeservice/club-clas" target="_blank">Clas Ohlson</a></li>
+                <li><img src="./Bilder/Dressmann logo.png" alt="Dressmann logo"><a
+                        href="https://www.dressmann.com/no/kundeklubb/" target="_blank">Dressmann</a></li>
+                <li><img src="./Bilder/power logo.png" alt="Power logo"><a href="https://www.power.no/kundeklubb"
+                        target="_blank">Power</a></li>
+                <li><img src="./Bilder/bikbok logo.png" alt="Bik Bok logo"><a href="https://www.bikbok.com/no/kundeklubb"
+                        target="_blank">Bik Bok</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Kundeavis-side -->
+    <div class="offers-page">
+        <div class="sidebar">
+            <h3>Hovedmeny</h3>
+            <a href="#" onclick="showMain()">Tilbake til kundeklubber</a>
+            <div class="filter">
+                <h4>Filtrer:</h4>
+                <input type="checkbox" id="coop" onchange="filterOffers()"> <label for="coop">Coop Extra</label><br>
+                <input type="checkbox" id="rema" onchange="filterOffers()"> <label for="rema">Rema 1000</label><br>
+                <input type="checkbox" id="hm" onchange="filterOffers()"> <label for="hm">H&M Club</label><br>
+                <input type="checkbox" id="clas" onchange="filterOffers()"> <label for="clas">Clas Ohlson</label><br>
+                <input type="checkbox" id="dressmann" onchange="filterOffers()"> <label for="dressmann">Dressmann</label><br>
+                <input type="checkbox" id="power" onchange="filterOffers()"> <label for="power">Power</label><br>
+                <input type="checkbox" id="bikbok" onchange="filterOffers()"> <label for="bikbok">Bik Bok</label><br>
+                <p>Temaer:</p>
+                <input type="checkbox" id="mat" onchange="filterOffers()"> <label for="mat">Mat</label><br>
+                <input type="checkbox" id="klaer" onchange="filterOffers()"> <label for="klaer">Klær</label><br>
+                <input type="checkbox" id="elektronikk" onchange="filterOffers()"> <label for="elektronikk">Elektronikk</label><br> </br>
+                <button onclick="saveFilters()">Lagre</button> <br></br>
+                <input type="text" id="filterName" placeholder="Navn på filter" style="margin-top: 10px;">
+                <select id="savedFilters" onchange="loadFilters()" style="margin-top: 10px;">
+                    <option value="">Velg lagret filter</option>
+                </select>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Kundeavis</h2>
+            <p>Her er dine deals (simulert fra eTilbudsavis):</p>
+            <ul class="offers-grid" id="offers-list">
+                <li class="offer-item" data-club="coop" data-theme="mat" onclick="trackPreference('coop', 'mat')">
+                    <img src="./Bilder/coop ectra.jpg" alt="Frukt">
+                    <div class="store">Coop Extra</div>
+                    <p>20% rabatt på frukt</p>
+                    <div class="price">Fra 29,90 kr</div>
+                    <div class="valid-until">Gyldig til: 15.03.2025</div>
+                    <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
+                </li>
+                <li class="offer-item" data-club="rema" data-theme="mat" onclick="trackPreference('rema', 'mat')">
+                    <img src="./Bilder/Meny92025_9_2571x885_4801x3273_zoom.jpg" alt="Pizza">
+                    <div class="store">Rema 1000</div>
+                    <p>Kjøp 3 pizzaer, betal for 2</p>
+                    <div class="price">Fra 39,90 kr</div>
+                    <div class="valid-until">Gyldig til: 14.03.2025</div>
+                    <div class="countdown" data-end-date="2025-03-14T23:59:59"></div>
+                </li>
+                <li class="offer-item" data-club="hm" data-theme="klaer" onclick="trackPreference('hm', 'klaer')">
+                    <img src="./Bilder/HM.png" alt="Klær">
+                    <div class="store">H&M Club</div>
+                    <p>10% rabatt på neste kjøp</p>
+                    <div class="price">Fra 199 kr</div>
+                    <div class="valid-until">Gyldig til: 16.03.2025</div>
+                    <div class="countdown" data-end-date="2025-03-16T23:59:59"></div>
+                </li>
+                <li class="offer-item" data-club="clas" data-theme="elektronikk" onclick="trackPreference('clas', 'elektronikk')">
+                    <img src="./Bilder/clas ohlson.jpg" alt="Verktøy">
+                    <div class="store">Clas Ohlson</div>
+                    <p>15% rabatt på verktøy</p>
+                    <div class="price">Fra 149 kr</div>
+                    <div class="valid-until">Gyldig til: 15.03.2025</div>
+                    <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
+                </li>
+                <li class="offer-item" data-club="dressmann" data-theme="klaer" onclick="trackPreference('dressmann', 'klaer')">
+                    <img src="./Bilder/Dressmann.jpg" alt="Dress">
+                    <div class="store">Dressmann</div>
+                    <p>25% rabatt på dresser</p>
+                    <div class="price">Fra 499 kr</div>
+                    <div class="valid-until">Gyldig til: 17.03.2025</div>
+                    <div class="countdown" data-end-date="2025-03-17T23:59:59"></div>
+                </li>
+                <li class="offer-item" data-club="power" data-theme="elektronikk" onclick="trackPreference('power', 'elektronikk')">
+                    <img src="./Bilder/power.jpg" alt="Hodetelefoner">
+                    <div class="store">Power</div>
+                    <p>200 kr avslag på hodetelefoner</p>
+                    <div class="price">Fra 799 kr</div>
+                    <div class="valid-until">Gyldig til: 16.03.2025</div>
+                    <div class="countdown" data-end-date="2025-03-16T23:59:59"></div>
+                </li>
+                <li class="offer-item" data-club="bikbok" data-theme="klaer" onclick="trackPreference('bikbok', 'klaer')">
+                    <img src="./Bilder/Bikbok.jpg" alt="Jeans">
+                    <div class="store">Bik Bok</div>
+                    <p>Kjøp 1 jeans, få 50% på neste</p>
+                    <div class="price">Fra 299 kr</div>
+                    <div class="valid-until">Gyldig til: 15.03.2025</div>
+                    <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
+                </li>
+            </ul>
+            <button onclick="showNearbyStores()">Vis nærliggende butikker</button>
+            <div id="nearby-stores" style="margin-top: 20px; display: none;"></div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
