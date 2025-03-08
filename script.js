@@ -349,6 +349,9 @@ function filterOffers() {
         offer.style.display = show ? 'block' : 'none';
     });
 
+
+    
+
     // Oppdater DOM med sortert rekkefølge
     const list = document.getElementById('offers-list');
     list.innerHTML = '';
