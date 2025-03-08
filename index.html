@@ -40,7 +40,9 @@
     <div class="main-page">
         <div class="sidebar">
             <h3>Meny</h3>
-            <a href="#" onclick="showOffers()">Din kundeavis</a>
+            <a href="#" id="main-link" onclick="showMain()">Dine kundeklubber</a>
+            <a href="#" id="offers-link" onclick="showOffers()">Din kundeavis</a>
+            <a href="#" id="about-link" onclick="showAbout()">Om Oss</a>
         </div>
         <div class="content">
             <h2>Dine kundeklubber</h2>
@@ -67,7 +69,9 @@
     <div class="offers-page">
         <div class="sidebar">
             <h3>Hovedmeny</h3>
-            <a href="#" onclick="showMain()">Tilbake til kundeklubber</a>
+            <a href="#" id="main-link" onclick="showMain()">Tilbake til kundeklubber</a>
+            <a href="#" id="offers-link" onclick="showOffers()">Din kundeavis</a>
+            <a href="#" id="about-link" onclick="showAbout()">Om Oss</a>
             <div class="filter">
                 <h4>Filtrer:</h4>
                 <input type="checkbox" id="coop" onchange="filterOffers()"> <label for="coop">Coop Extra</label><br>
@@ -150,7 +154,37 @@
                 </li>
             </ul>
             <button onclick="showNearbyStores()">Vis nærliggende butikker</button>
-            <div id="nearby-stores" style="margin-top: 20px; display: none;"></div>
+            <div id="nearby-stores" style="margin-top: 20px; display: none; position: relative; height: 400px; width: 100%; background-color: #e0e0e0; border: 2px solid #333;">
+                <!-- Simulert brukerposisjon -->
+                <div style="position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; background-color: blue; border-radius: 50%; transform: translate(-50%, -50%);"></div>
+                <!-- Simulerte butikkmarkører -->
+                <div class="store-marker" data-store="coop" style="position: absolute; top: 30%; left: 40%; width: 12px; height: 12px; background-color: red; border-radius: 50%;">
+                    <span class="store-label" style="position: absolute; top: -20px; left: -20px; color: black; font-size: 12px; white-space: nowrap;">Coop Extra</span>
+                </div>
+                <div class="store-marker" data-store="rema" style="position: absolute; top: 70%; left: 60%; width: 12px; height: 12px; background-color: red; border-radius: 50%;">
+                    <span class="store-label" style="position: absolute; top: -20px; left: -20px; color: black; font-size: 12px; white-space: nowrap;">Rema 1000</span>
+                </div>
+                <div class="store-marker" data-store="hm" style="position: absolute; top: 40%; left: 70%; width: 12px; height: 12px; background-color: red; border-radius: 50%;">
+                    <span class="store-label" style="position: absolute; top: -20px; left: -20px; color: black; font-size: 12px; white-space: nowrap;">H&M</span>
+                </div>
+                <p style="position: absolute; bottom: 10px; left: 10px; color: #333;">Dette er en mockup av et kart. Blå sirkel = din posisjon, røde sirkler = butikker.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Om Oss-side -->
+    <div class="about-page">
+        <div class="sidebar">
+            <h3>Meny</h3>
+            <a href="#" id="main-link" onclick="showMain()">Tilbake til kundeklubber</a>
+            <a href="#" id="offers-link" onclick="showOffers()">Din kundeavis</a>
+            <a href="#" id="about-link" onclick="showAbout()">Om Oss</a>
+        </div>
+        <div class="content">
+            <h2>Om Oss</h2>
+            <p>Velkommen til Dine Kundeklubber! Vi er et team som jobber med å hjelpe deg å finne de beste tilbudene fra dine favorittbutikker. Vårt mål er å gjøre shoppingopplevelsen din enklere og mer lønnsom ved å samle tilbud og vise nærliggende butikker.</p>
+            <p>Denne nettsiden er utviklet som en del av et skoleprosjekt av Daniel Cric. Vi håper du liker å bruke den!</p>
+            <p>Kontakt oss: <a href="mailto:daniel@example.com">daniel@example.com</a></p>
         </div>
     </div>
 
