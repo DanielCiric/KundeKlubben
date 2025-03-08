@@ -6,13 +6,13 @@ body {
     color: #2b2d42;
 }
 
-.login-page, .main-page, .offers-page, .register-page {
+.login-page, .main-page, .offers-page, .register-page, .about-page {
     text-align: center;
     display: none;
     min-height: 100vh;
 }
 
-.login-page.active, .main-page.active, .offers-page.active, .register-page.active {
+.login-page.active, .main-page.active, .offers-page.active, .register-page.active, .about-page.active {
     display: block;
 }
 
@@ -75,7 +75,7 @@ button:hover {
 }
 
 .sidebar a {
-    color: #edf2f4;
+    color: #edf2f4; /* Hvit som standard */
     text-decoration: none;
     display: block;
     margin: 15px 0;
@@ -83,7 +83,12 @@ button:hover {
 }
 
 .sidebar a:hover {
-    color: #ef233c;
+    color: #ef233c; /* Rød ved hover */
+}
+
+.sidebar a.active {
+    color: #ef233c; /* Rød for aktiv lenke */
+    text-decoration: underline;
 }
 
 .content {
@@ -204,22 +209,49 @@ ul.club-list li a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Oppdatert stil for mockup-kart */
 #nearby-stores {
-    background-color: white;
-    padding: 15px;
+    position: relative;
+    height: 400px;
+    width: 100%;
+    background-color: #e0e0e0;
+    border: 2px solid #333;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     margin-top: 10px;
 }
 
-#nearby-stores ul {
-    list-style: none;
-    padding: 0;
+#nearby-stores .store-marker {
+    position: absolute;
+    z-index: 10;
 }
 
-#nearby-stores li {
-    margin: 5px 0;
+#nearby-stores .store-label {
+    pointer-events: none; /* Hindrer klikk på etikettene */
+}
+
+/* Stiler for Om Oss-siden */
+.about-page .content {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-left: 270px; /* Juster for å gi plass til sidebaren */
+    padding: 40px;
+}
+
+.about-page p {
+    font-size: 1.1em;
+    line-height: 1.6;
     color: #2b2d42;
+}
+
+.about-page a {
+    color: #ef233c;
+    text-decoration: none;
+}
+
+.about-page a:hover {
+    text-decoration: underline;
 }
 
 #savedFilters, #filterName {
