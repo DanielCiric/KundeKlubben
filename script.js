@@ -20,6 +20,32 @@ let userPreferences = JSON.parse(localStorage.getItem('userPreferences')) || {};
 // Objekt for å lagre brukers filtervalg
 let savedFilters = JSON.parse(localStorage.getItem('savedFilters')) || {};
 
+// Funksjon for å fjerne active-klassen fra alle lenker og legge den til den valgte
+function updateActiveLink(activePage) {
+    // Finn den aktive siden
+    const activePageElement = document.querySelector('.main-page.active, .offers-page.active, .about-page.active');
+    if (!activePageElement) return;
+
+    // Finn sidebaren i den aktive siden
+    const sidebar = activePageElement.querySelector('.sidebar');
+    if (!sidebar) return;
+
+    // Fjern active-klassen fra alle lenker i den aktive sidebaren
+    const sidebarLinks = sidebar.querySelectorAll('a');
+    sidebarLinks.forEach(link => link.classList.remove('active'));
+
+    // Legg til active-klassen på den korrekte lenken i den aktive sidebaren
+    sidebarLinks.forEach(link => {
+        if (activePage === 'main' && link.id === 'main-link') {
+            link.classList.add('active');
+        } else if (activePage === 'offers' && link.id === 'offers-link') {
+            link.classList.add('active');
+        } else if (activePage === 'about' && link.id === 'about-link') {
+            link.classList.add('active');
+        }
+    });
+}
+
 // Funksjon for å spore preferanser når brukeren klikker på et tilbud
 function trackPreference(club, theme) {
     userPreferences[club] = (userPreferences[club] || 0) + 1;
@@ -66,11 +92,11 @@ function showNearbyStores() {
             displayNearbyStores(nearbyStores);
         }, error => {
             alert("Kunne ikke hente posisjonen din: " + error.message);
-            displayNearbyStores([]); // Vis tom liste hvis geolocation feiler
+            displayNearbyStores([]); // Vis mockup-kartet selv om geolokasjon feiler
         });
     } else {
         alert("Geolocation støttes ikke i din nettleser.");
-        displayNearbyStores([]); // Vis tom liste hvis geolocation ikke støttes
+        displayNearbyStores([]); // Vis mockup-kartet selv om geolokasjon ikke støttes
     }
 }
 
@@ -80,7 +106,8 @@ function findNearbyStores(userLat, userLon) {
         const store = stores[storeName];
         const distance = calculateDistance(userLat, userLon, store.lat, store.lon);
         if (distance < 5) { // Vis butikker innen 5 km (kan justeres)
-            nearby.push({ name: store.name, distance: distance.toFixed(2) });
+            const storeId = storeName.toLowerCase().replace(/\s+/g, '');
+            nearby.push({ name: store.name, distance: distance.toFixed(2), id: storeId });
         }
     }
     return nearby.sort((a, b) => a.distance - b.distance); // Sorter etter avstand
@@ -100,15 +127,39 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 function displayNearbyStores(stores) {
     const container = document.getElementById('nearby-stores');
     container.style.display = 'block';
-    container.innerHTML = '<h3>Nærliggende butikker:</h3><ul>';
+
+    // Skjul alle markører først
+    const markers = document.querySelectorAll('.store-marker');
+    markers.forEach(marker => {
+        marker.style.display = 'none';
+    });
+
+    // Fjern eventuelle tidligere meldinger
+    const existingMessage = container.querySelector('p.no-stores-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+
+    // Vis kun markører for butikker som er i nærheten
     if (stores.length === 0) {
-        container.innerHTML += '<li>Ingen butikker i nærheten funnet.</li>';
+        const noStoresMessage = document.createElement('p');
+        noStoresMessage.className = 'no-stores-message';
+        noStoresMessage.textContent = 'Ingen butikker i nærheten funnet.';
+        noStoresMessage.style.position = 'absolute';
+        noStoresMessage.style.top = '50%';
+        noStoresMessage.style.left = '50%';
+        noStoresMessage.style.transform = 'translate(-50%, -50%)';
+        noStoresMessage.style.color = '#333';
+        noStoresMessage.style.fontSize = '16px';
+        container.appendChild(noStoresMessage);
     } else {
         stores.forEach(store => {
-            container.innerHTML += `<li>${store.name} (${store.distance} km unna)</li>`;
+            const marker = document.querySelector(`.store-marker[data-store="${store.id}"]`);
+            if (marker) {
+                marker.style.display = 'block';
+            }
         });
     }
-    container.innerHTML += '</ul>';
 }
 
 // Funksjon for å lagre filtre
@@ -182,6 +233,7 @@ function login() {
         document.querySelector('.login-page').classList.remove('active');
         document.querySelector('.main-page').classList.add('active');
         error.textContent = "";
+        updateActiveLink('main');
     } else {
         error.textContent = "Feil telefonnummer eller passord. Prøv igjen eller opprett en bruker.";
     }
@@ -220,15 +272,27 @@ function register() {
 function showOffers() {
     document.querySelector('.main-page').classList.remove('active');
     document.querySelector('.offers-page').classList.add('active');
+    document.querySelector('.about-page').classList.remove('active');
     filterOffers();
     startCountdowns();
     loadFilterOptions();
+    updateActiveLink('offers');
 }
 
 // Legger til funksjon for å gå tilbake til hovedside
 function showMain() {
     document.querySelector('.offers-page').classList.remove('active');
+    document.querySelector('.about-page').classList.remove('active');
     document.querySelector('.main-page').classList.add('active');
+    updateActiveLink('main');
+}
+
+// Legger til funksjon for å vise Om Oss-siden
+function showAbout() {
+    document.querySelector('.main-page').classList.remove('active');
+    document.querySelector('.offers-page').classList.remove('active');
+    document.querySelector('.about-page').classList.add('active');
+    updateActiveLink('about');
 }
 
 // Legger til funksjon for å filtrere tilbud
