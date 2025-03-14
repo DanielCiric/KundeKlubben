@@ -18,6 +18,28 @@ body {
 
 .login-page {
     background-color: #cce4ff;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-overlay {
+    position: relative;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.3); /* Svak mørk overlay over bildet */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-content {
+    background-color: rgba(255, 255, 255, 0.9); /* Hvit boks med litt gjennomsiktighet */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    z-index: 1;
 }
 
 h1 {
@@ -26,6 +48,20 @@ h1 {
     margin-top: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
+}
+
+.animated-title {
+    font-size: 3.5em;
+    color: #2b2d42;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeInDown 2s ease-in-out;
+}
+
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
@@ -37,9 +73,16 @@ input[type="tel"], input[type="password"] {
     padding: 12px;
     font-size: 1.2em;
     margin: 15px;
-    width: 250px;
+    width: 280px; /* Økt bredde for å gi mer plass til placeholder-teksten */
     border: 2px solid #8d5524;
     border-radius: 5px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="tel"]:focus, input[type="password"]:focus {
+    border-color: #ef233c;
+    transform: scale(1.02);
+    outline: none;
 }
 
 button {
@@ -50,11 +93,14 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease, padding 0.3s ease;
+    margin: 10px 0; /* Legger til margin for å skape mellomrom mellom knappene */
 }
 
 button:hover {
     background-color: #c68642;
+    transform: scale(1.1); /* Blir litt større ved hover */
+    padding: 14px 35px; /* Øker padding for å matche størrelsen */
 }
 
 .sidebar {
@@ -201,12 +247,14 @@ ul.club-list li a:hover {
 }
 
 .header-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 600px;
-    height: auto;
-    margin: 20px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5; /* Svak gjennomsiktighet på bakgrunnsbildet */
+    z-index: 0;
 }
 
 /* Oppdatert stil for mockup-kart */
@@ -239,18 +287,43 @@ ul.club-list li a:hover {
     padding: 40px;
 }
 
+.about-page .info-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #8d5524; /* Fin detalj med farget kant */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-page .info-box:hover {
+    transform: translateY(-5px); /* Løfter boksen litt ved hover */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.about-page h2 {
+    font-size: 2.5em;
+    color: #2b2d42;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 .about-page p {
     font-size: 1.1em;
-    line-height: 1.6;
+    line-height: 1.8;
     color: #2b2d42;
+    margin-bottom: 15px;
 }
 
 .about-page a {
     color: #ef233c;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .about-page a:hover {
+    color: #d00000;
     text-decoration: underline;
 }
 
