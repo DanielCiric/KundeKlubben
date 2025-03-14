@@ -8,19 +8,23 @@
 <body>
     <!-- Forside med innlogging -->
     <div class="login-page active">
-        <img src="https://images.unsplash.com/photo-1599658880436-c61792e70672?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-            alt="Shopping bilde" class="header-image">
-        <h1>DINE KUNDEKLUBBER</h1>
-        <input type="tel" placeholder="Skriv inn telefonnummer" id="phone"
-            onkeydown="if(event.key === 'Enter') login()">
-        <br>
-        <input type="password" placeholder="Passord (valgfritt)" id="password"
-            onkeydown="if(event.key === 'Enter') login()">
-        <br>
-        <button onclick="login()">Logg inn</button>
-        <br> </br>
-        <button onclick="showRegister()">Opprett bruker</button>
-        <p class="error" id="login-error"></p>
+        <div class="login-overlay">
+            <img src="https://images.unsplash.com/photo-1599658880436-c61792e70672?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                 alt="Shopping bilde" class="header-image">
+            <div class="login-content">
+                <h1 class="animated-title">DINE KUNDEKLUBBER</h1>
+                <input type="tel" placeholder="Skriv inn telefonnummer" id="phone"
+                       onkeydown="if(event.key === 'Enter') login()">
+                <br>
+                <input type="password" placeholder="Passord (valgfritt)" id="password"
+                       onkeydown="if(event.key === 'Enter') login()">
+                <br>
+                <button onclick="login()">Logg inn</button>
+                <br>
+                <button onclick="showRegister()">Opprett bruker</button>
+                <p class="error" id="login-error"></p>
+            </div>
+        </div>
     </div>
 
     <!-- Registreringsside -->
@@ -84,8 +88,11 @@
                 <p>Temaer:</p>
                 <input type="checkbox" id="mat" onchange="filterOffers()"> <label for="mat">Mat</label><br>
                 <input type="checkbox" id="klaer" onchange="filterOffers()"> <label for="klaer">Klær</label><br>
-                <input type="checkbox" id="elektronikk" onchange="filterOffers()"> <label for="elektronikk">Elektronikk</label><br> </br>
-                <button onclick="saveFilters()">Lagre</button> <br></br>
+                <input type="checkbox" id="elektronikk" onchange="filterOffers()"> <label for="elektronikk">Elektronikk</label><br>
+                <br>
+                <button onclick="saveFilters()">Lagre</button>
+                <br>
+                <br>
                 <input type="text" id="filterName" placeholder="Navn på filter" style="margin-top: 10px;">
                 <select id="savedFilters" onchange="loadFilters()" style="margin-top: 10px;">
                     <option value="">Velg lagret filter</option>
@@ -182,9 +189,11 @@
         </div>
         <div class="content">
             <h2>Om Oss</h2>
-            <p>Velkommen til Dine Kundeklubber! Vi er et gjeng med studenter som har kommet med en innovasjon eller løsning for dere som sliter med å holde styr på alle klubberer man er medlem på. Vi ville også hjelpe dere med å finne tilbudene fra dine favorittbutikker. Vårt mål er å gjøre shoppingopplevelsen din enklere og mer lønnsom ved å samle tilbud og vise nærliggende butikker.</p>
-            <p>Denne nettsiden er utviklet som en del av et skoleprosjekt. Vi håper du liker å bruke den!</p>
-            <p>Kontakt oss: <a href="mailto:@example.com">@example.com</a></p>
+            <div class="info-box">
+                <p>Velkommen til Dine Kundeklubber! Vi er et gjeng med studenter som har kommet med en innovasjon eller løsning for dere som sliter med å holde styr på alle klubberer man er medlem på. Vi ville også hjelpe dere med å finne tilbudene fra dine favorittbutikker. Vårt mål er å gjøre shoppingopplevelsen din enklere og mer lønnsom ved å samle tilbud og vise nærliggende butikker.</p>
+                <p>Denne nettsiden er utviklet som en del av et skoleprosjekt. Vi håper du liker å bruke den!</p>
+                <p>Kontakt oss: <a href="mailto:@example.com">@example.com</a></p>
+            </div>
         </div>
     </div>
 
