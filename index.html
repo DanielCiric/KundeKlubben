@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
     <meta charset="UTF-8">
     <title>Dine Kundeklubber</title>
@@ -10,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-    
 <body>
     <!-- Toppnavigasjon -->
     <div class="top-nav">
@@ -18,8 +18,10 @@
             <h3>Kundeklubbe</h3>
             <div class="nav-links">
                 <a href="#" id="home-link" onclick="showHome()"><i class="fas fa-home"></i> Hjem</a>
-                <a href="#" id="main-link" onclick="navigateIfLogged('main')"><i class="fas fa-users"></i> Dine kundeklubber</a>
-                <a href="#" id="offers-link" onclick="navigateIfLogged('offers')"><i class="fas fa-tags"></i> Din kundeavis</a>
+                <a href="#" id="main-link" onclick="navigateIfLogged('main')"><i class="fas fa-users"></i> Dine
+                    kundeklubber</a>
+                <a href="#" id="offers-link" onclick="navigateIfLogged('offers')"><i class="fas fa-tags"></i> Din
+                    kundeavis</a>
                 <a href="#" id="about-link" onclick="showAbout()"><i class="fas fa-info-circle"></i> Om Oss</a>
             </div>
             <div class="auth-links">
@@ -30,7 +32,6 @@
         </div>
     </div>
 
-    
     <!-- Hjemmeside -->
     <div class="page-container">
         <div class="home-page active">
@@ -47,12 +48,16 @@
             <div class="content">
                 <section class="what-we-do">
                     <h2>Hva vi gjør</h2>
-                    <p>Vi samler tilbud fra populære butikker, viser deg nærliggende butikker, og gir deg en enkel måte å administrere dine kundeklubbmedlemskap på én plass. Vårt mål er å gjøre shoppingen din enklere og mer lønnsom!</p>
+                    <p>Vi samler tilbud fra populære butikker, viser deg nærliggende butikker, og gir deg en enkel måte
+                        å administrere dine kundeklubbmedlemskap på én plass. Vårt mål er å gjøre shoppingen din enklere
+                        og mer lønnsom!</p>
                 </section>
-                <hr></hr>
+                <hr>
+                </hr>
                 <section class="plan-videre">
                     <h2>Planer videre</h2>
-                    <p>Dette er som sagt et prosjekt vi har nettopp startet med, så vi har ikke fått tatt med alt vi vil ha.</p>
+                    <p>Dette er som sagt et prosjekt vi har nettopp startet med, så vi har ikke fått tatt med alt vi vil
+                        ha.</p>
                     <p> Men vi har flere ideer som vi jobber med og har lyst å ta med videre utover.</p>
                     <p>Disse ideene eller hva vi skal videre utvikle er:</p>
                     <ul>
@@ -62,11 +67,14 @@
                         <li>Videreutvikle filtreringssystemet for tilbud</li>
                     </ul>
                 </section>
-                <hr></hr>
+                <hr>
+                </hr>
 
                 <section class="about-us">
                     <h2>Om oss</h2>
-                    <p>Denne nettsiden er et resultat av et skoleprosjekt. Vi er lidenskapelige studenter som ønsker å skape en nyttig løsning for deg. Kontakt oss på: <a href="mailto:@example.com">@example.com</a></p>
+                    <p>Denne nettsiden er et resultat av et skoleprosjekt. Vi er lidenskapelige studenter som ønsker å
+                        skape en nyttig løsning for deg. Kontakt oss på: <a href="mailto:@example.com">@example.com</a>
+                    </p>
                 </section>
             </div>
         </div>
@@ -75,14 +83,14 @@
         <div class="login-page">
             <div class="login-overlay">
                 <img src="https://images.unsplash.com/photo-1599658880436-c61792e70672?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                     alt="Shopping bilde" class="header-image">
+                    alt="Shopping bilde" class="header-image">
                 <div class="login-content">
                     <h1 class="animated-title">KUNDEKLUBBEN</h1>
                     <input type="tel" placeholder="Skriv inn telefonnummer" id="phone"
-                           onkeydown="if(event.key === 'Enter') login()">
+                        onkeydown="if(event.key === 'Enter') login()">
                     <br>
                     <input type="password" placeholder="Passord (valgfritt)" id="password"
-                           onkeydown="if(event.key === 'Enter') login()">
+                        onkeydown="if(event.key === 'Enter') login()">
                     <br>
                     <button onclick="login()">Logg inn</button>
                     <button onclick="showRegister()">Opprett bruker</button>
@@ -90,6 +98,7 @@
                 </div>
             </div>
         </div>
+
 
         <!-- Registreringsside -->
         <div class="register-page">
@@ -105,21 +114,32 @@
             </div>
         </div>
 
+
+
         <!-- Hovedside etter innlogging -->
         <div class="main-page">
             <div class="content">
                 <h2>Dine kundeklubber</h2>
                 <ul class="club-list">
-                    <li><img src="./Bilder/extra logo.png" alt="Coop Extra logo"><a href="https://www.coop.no/medlem" target="_blank">Coop Extra</a></li>
-                    <li><img src="./Bilder/rema lgoo.jpg" alt="Rema 1000 logo"><a href="https://www.rema.no/" target="_blank">Rema 1000</a></li>
-                    <li><img src="./Bilder/hm loho.png" alt="H&M Club logo"><a href="https://www2.hm.com/no_no/index.html" target="_blank">H&M Club</a></li>
-                    <li><img src="./Bilder/clas ohlson logo.png" alt="Clas Ohlson logo"><a href="https://www.clasohlson.com/no/clubclas" target="_blank">Clas Ohlson</a></li>
-                    <li><img src="./Bilder/Dressmann logo.png" alt="Dressmann logo"><a href="https://dressmann.com/no/" target="_blank">Dressmann</a></li>
-                    <li><img src="./Bilder/power logo.png" alt="Power logo"><a href="https://www.power.no" target="_blank">Power</a></li>
-                    <li><img src="./Bilder/bikbok logo.png" alt="Bik Bok logo"><a href="https://bikbok.com/no/" target="_blank">Bik Bok</a></li>
+                    <li><img src="./Bilder/extra logo.png" alt="Coop Extra logo"><a href="https://www.coop.no/medlem"
+                            target="_blank">Coop Extra</a></li>
+                    <li><img src="./Bilder/rema lgoo.jpg" alt="Rema 1000 logo"><a href="https://www.rema.no/"
+                            target="_blank">Rema 1000</a></li>
+                    <li><img src="./Bilder/hm loho.png" alt="H&M Club logo"><a
+                            href="https://www2.hm.com/no_no/index.html" target="_blank">H&M Club</a></li>
+                    <li><img src="./Bilder/clas ohlson logo.png" alt="Clas Ohlson logo"><a
+                            href="https://www.clasohlson.com/no/clubclas" target="_blank">Clas Ohlson</a></li>
+                    <li><img src="./Bilder/Dressmann logo.png" alt="Dressmann logo"><a href="https://dressmann.com/no/"
+                            target="_blank">Dressmann</a></li>
+                    <li><img src="./Bilder/power logo.png" alt="Power logo"><a href="https://www.power.no"
+                            target="_blank">Power</a></li>
+                    <li><img src="./Bilder/bikbok logo.png" alt="Bik Bok logo"><a href="https://bikbok.com/no/"
+                            target="_blank">Bik Bok</a></li>
                 </ul>
             </div>
         </div>
+
+
 
         <!-- Kundeavis-side -->
         <div class="offers-page">
@@ -145,6 +165,7 @@
                     <ul id="filter-list"></ul>
                 </div>
             </div>
+
             <!-- Hovedinnhold -->
             <div class="content">
                 <h2>Kundeavis</h2>
@@ -174,7 +195,8 @@
                         <div class="valid-until">Gyldig til: 16.03.2025</div>
                         <div class="countdown" data-end-date="2025-03-16T23:59:59"></div>
                     </li>
-                    <li class="offer-item" data-club="clas" data-theme="elektronikk" onclick="trackPreference('clas', 'elektronikk')">
+                    <li class="offer-item" data-club="clas" data-theme="elektronikk"
+                        onclick="trackPreference('clas', 'elektronikk')">
                         <img src="./Bilder/clas ohlson.jpg" alt="Verktøy">
                         <div class="store">Clas Ohlson</div>
                         <p>15% rabatt på verktøy</p>
@@ -182,7 +204,8 @@
                         <div class="valid-until">Gyldig til: 15.03.2025</div>
                         <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
                     </li>
-                    <li class="offer-item" data-club="dressmann" data-theme="klaer" onclick="trackPreference('dressmann', 'klaer')">
+                    <li class="offer-item" data-club="dressmann" data-theme="klaer"
+                        onclick="trackPreference('dressmann', 'klaer')">
                         <img src="./Bilder/Dressmann.jpg" alt="Dress">
                         <div class="store">Dressmann</div>
                         <p>25% rabatt på dresser</p>
@@ -190,7 +213,8 @@
                         <div class="valid-until">Gyldig til: 17.03.2025</div>
                         <div class="countdown" data-end-date="2025-03-17T23:59:59"></div>
                     </li>
-                    <li class="offer-item" data-club="power" data-theme="elektronikk" onclick="trackPreference('power', 'elektronikk')">
+                    <li class="offer-item" data-club="power" data-theme="elektronikk"
+                        onclick="trackPreference('power', 'elektronikk')">
                         <img src="./Bilder/power.jpg" alt="Hodetelefoner">
                         <div class="store">Power</div>
                         <p>200 kr avslag på hodetelefoner</p>
@@ -198,7 +222,8 @@
                         <div class="valid-until">Gyldig til: 16.03.2025</div>
                         <div class="countdown" data-end-date="2025-03-16T23:59:59"></div>
                     </li>
-                    <li class="offer-item" data-club="bikbok" data-theme="klaer" onclick="trackPreference('bikbok', 'klaer')">
+                    <li class="offer-item" data-club="bikbok" data-theme="klaer"
+                        onclick="trackPreference('bikbok', 'klaer')">
                         <img src="./Bilder/Bikbok.jpg" alt="Jeans">
                         <div class="store">Bik Bok</div>
                         <p>Kjøp 1 jeans, få 50% på neste</p>
@@ -221,17 +246,24 @@
                     <div class="store-marker" data-store="hm">
                         <span class="store-label">H&M</span>
                     </div>
-                    <p class="map-info">Dette er en mockup av et kart. Blå sirkel = din posisjon, røde sirkler = butikker.</p>
+                    <p class="map-info">Dette er en mockup av et kart. Blå sirkel = din posisjon, røde sirkler =
+                        butikker.</p>
                 </div>
             </div>
         </div>
 
+        
+        
         <!-- Om Oss-side -->
         <div class="about-page">
             <div class="content">
                 <h2>Om Oss</h2>
                 <div class="info-box">
-                    <p>Velkommen til Dine Kundeklubber! Vi er et gjeng med studenter som har kommet med en innovasjon eller løsning for dere som sliter med å holde styr på alle klubber man er medlem på. Vi ville også hjelpe dere med å finne tilbudene fra dine favorittbutikker. Vårt mål er å gjøre shoppingopplevelsen din enklere og mer lønnsom ved å samle tilbud og vise nærliggende butikker.</p>
+                    <p>Velkommen til Dine Kundeklubber! Vi er et gjeng med studenter som har kommet med en innovasjon
+                        eller løsning for dere som sliter med å holde styr på alle klubber man er medlem på. Vi ville
+                        også hjelpe dere med å finne tilbudene fra dine favorittbutikker. Vårt mål er å gjøre
+                        shoppingopplevelsen din enklere og mer lønnsom ved å samle tilbud og vise nærliggende butikker.
+                    </p>
                     <p>Denne nettsiden er utviklet som en del av et skoleprosjekt. Vi håper du liker å bruke den!</p>
                     <p>Kontakt oss: <a href="mailto:@example.com">@example.com</a></p>
                 </div>
@@ -241,4 +273,5 @@
 
     <script src="./script.js"></script>
 </body>
+
 </html>
