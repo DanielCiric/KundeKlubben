@@ -1,23 +1,208 @@
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fafafa;
-    color: #2b2d42;
+/* Definerer fargepaletten som variabler for enkel bruk */
+:root {
+    --primary-color: #8d5524; /* Brun - knapper, aksenter */
+    --secondary-color: #ef233c; /* Rød - hover, aksenter */
+    --background-color: #bca4a470; /* Lys grå - bakgrunn */
+    --text-color: #2b2d42; /* Mørk blågrå - tekst */
+    --light-text-color: #edf2f4; /* Hvit - tekst på mørke bakgrunner */
 }
 
-.login-page, .main-page, .offers-page, .register-page, .about-page {
-    text-align: center;
-    display: none;
+
+body {
+    font-family: 'Poppins', sans-serif; /* Moderne font */
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 16px; /* Grunnleggende fontstørrelse */
+}
+
+.page-container {
+    position: relative;
     min-height: 100vh;
 }
 
-.login-page.active, .main-page.active, .offers-page.active, .register-page.active, .about-page.active {
+.home-page, .login-page, .main-page, .offers-page, .register-page, .about-page {
+    text-align: center;
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.home-page.active, .login-page.active, .main-page.active, .offers-page.active, .register-page.active, .about-page.active {
     display: block;
 }
 
+.top-nav {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--light-text-color);
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links, .auth-links {
+    display: flex;
+    align-items: center;
+}
+
+.top-nav h3 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.top-nav a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.1em;
+    transition: color 0.3s ease; /* Glatt overgang for hover */
+}
+
+.top-nav a:hover {
+    color: var(--secondary-color); /* Rød ved hover */
+}
+
+.nav-links a i {
+    margin-right: 8px; /* Avstand mellom ikon og tekst */
+}
+
+.auth-links a {
+    margin-left: 20px;
+}
+
+/* Hero-seksjon på hjemmesiden */
+.home-page .hero-section {
+    position: relative;
+    height: 100vh;
+    background-image: url('./Bilder/Logo\ for\ kundeklubben\ 2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.home-page .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Mørk overlay for bedre lesbarhet */
+    z-index: 1;
+}
+
+.home-page .hero-content,
+.home-page .scroll-down {
+    position: relative;
+    z-index: 2; /* Over overlay */
+}
+
+.home-page .hero-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 500px;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.home-page .hero-content:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.home-page .hero-content h1 {
+    font-size: 2.4em;
+    color: var(--light-text-color);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    animation: fadeIn 1.5s ease-in-out; /* Fade-in-animasjon */
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.home-page .scroll-down {
+    margin-top: 20px;
+    z-index: 5;
+}
+
+.home-page .arrow-down {
+    font-size: 2em;
+    color: var(--light-text-color);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.home-page .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: var(--background-color);
+}
+
+.what-we-do, .plan-videre, .about-us {
+    margin-bottom: 40px;
+}
+
+.plan-videre ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.plan-videre li {
+    font-size: 1.1em;
+    line-height: 1.8; /* Bedre linjeavstand */
+    color: var(--text-color);
+}
+
 .login-page {
-    background-color: #cce4ff;
+    background-color: #535b64;
     position: relative;
     overflow: hidden;
 }
@@ -25,14 +210,14 @@ body {
 .login-overlay {
     position: relative;
     min-height: 100vh;
-    background: rgba(0, 0, 0, 0.3); /* Svak mørk overlay over bildet */
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .login-content {
-    background-color: rgba(255, 255, 255, 0.9); /* Hvit boks med litt gjennomsiktighet */
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -40,22 +225,113 @@ body {
     width: 100%;
     max-width: 400px;
     z-index: 1;
+    margin-top: 60px;
+}
+
+.main-page .content, .about-page .content, .register-page .content {
+    max-width: 800px;
+    margin: 100px auto 0;
+    padding: 40px;
+}
+
+.offers-page {
+    display: flex;
+    margin-top: 60px;
+}
+
+.offers-page .sidebar {
+    width: 250px;
+    background-color: var(--text-color);
+    color: var(--light-text-color);
+    padding: 20px;
+    position: fixed;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    top: 60px;
+    left: 0;
+    z-index: 900;
+    display: none;
+}
+
+.offers-page.active .sidebar {
+    display: block;
+}
+
+.offers-page .sidebar h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.offers-page .sidebar h4 {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: var(--light-text-color);
+    font-weight: 400;
+}
+
+.offers-page .sidebar label {
+    display: block;
+    margin: 5px 0;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.offers-page .sidebar input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.offers-page .sidebar input[type="text"] {
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px solid var(--light-text-color);
+    border-radius: 3px;
+    background-color: var(--text-color);
+    color: var(--light-text-color);
+}
+
+.offers-page .sidebar #saved-filters {
+    margin-top: 20px;
+}
+
+.offers-page .sidebar #filter-list {
+    list-style: none;
+    padding: 0;
+}
+
+.offers-page .sidebar #filter-list li {
+    padding: 5px 0;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.offers-page .sidebar #filter-list li:hover {
+    text-decoration: underline;
+}
+
+.offers-page .content {
+    margin-left: 270px;
+    max-width: calc(100% - 270px);
+    padding: 40px;
 }
 
 h1 {
-    font-size: 3.5em;
-    color: #2b2d42;
-    margin-top: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.animated-title {
-    font-size: 3.2em;
-    color: #2b2d42;
+    font-size: 3em;
+    color: var(--text-color);
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.animated-title {
+    font-size: 3.1em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
     animation: fadeInDown 2s ease-in-out;
 }
 
@@ -66,21 +342,28 @@ h1 {
 
 h2 {
     font-size: 2em;
-    color: #2b2d42;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.8; /* Bedre lesbarhet */
+    color: var(--text-color);
 }
 
 input[type="tel"], input[type="password"] {
     padding: 12px;
     font-size: 1.2em;
     margin: 15px;
-    width: 280px; /* Økt bredde for å gi mer plass til placeholder-teksten */
-    border: 2px solid #8d5524;
+    width: 280px;
+    border: 2px solid var(--primary-color);
     border-radius: 5px;
     transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 input[type="tel"]:focus, input[type="password"]:focus {
-    border-color: #ef233c;
+    border-color: var(--secondary-color);
     transform: scale(1.02);
     outline: none;
 }
@@ -88,58 +371,19 @@ input[type="tel"]:focus, input[type="password"]:focus {
 button {
     padding: 12px 30px;
     font-size: 1.2em;
-    background-color: #8d5524;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease, padding 0.3s ease;
-    margin: 10px 0; /* Legger til margin for å skape mellomrom mellom knappene */
+    margin: 10px 0;
 }
 
 button:hover {
-    background-color: #c68642;
-    transform: scale(1.1); /* Blir litt større ved hover */
-    padding: 14px 35px; /* Øker padding for å matche størrelsen */
-}
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #2b2d42;
-    color: white;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar h3 {
-    margin-top: 0;
-    font-size: 1.5em;
-}
-
-.sidebar a {
-    color: #edf2f4; /* Hvit som standard */
-    text-decoration: none;
-    display: block;
-    margin: 15px 0;
-    font-size: 1.1em;
-}
-
-.sidebar a:hover {
-    color: #ef233c; /* Rød ved hover */
-}
-
-.sidebar a.active {
-    color: #ef233c; /* Rød for aktiv lenke */
-    text-decoration: underline;
-}
-
-.content {
-    margin-left: 270px;
-    padding: 40px;
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+    padding: 14px 35px;
 }
 
 ul {
@@ -155,6 +399,12 @@ ul.club-list li {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Subtile overganger */
+}
+
+ul.club-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 ul.club-list li img {
@@ -164,14 +414,15 @@ ul.club-list li img {
 }
 
 ul.club-list li a {
-    color: #2b2d42;
+    color: var(--text-color);
     text-decoration: none;
     display: block;
     flex-grow: 1;
+    transition: color 0.3s ease;
 }
 
 ul.club-list li a:hover {
-    color: #ef233c;
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
@@ -189,11 +440,12 @@ ul.club-list li a:hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: left;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .offer-item:hover {
-    transform: scale(1.02);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .offer-item img {
@@ -205,12 +457,12 @@ ul.club-list li a:hover {
 
 .offer-item .store {
     font-weight: bold;
-    color: #2b2d42;
+    color: var(--text-color);
     margin: 5px 0;
 }
 
 .offer-item .price {
-    color: #ef233c;
+    color: var(--secondary-color);
     font-size: 1.2em;
     margin: 5px 0;
 }
@@ -224,24 +476,11 @@ ul.club-list li a:hover {
 .offer-item p {
     margin: 10px 0 0;
     font-size: 1em;
-    color: #2b2d42;
-}
-
-.filter {
-    margin-top: 20px;
-}
-
-.filter input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-.filter label {
-    font-size: 1.1em;
-    cursor: pointer;
+    color: var(--text-color);
 }
 
 .error {
-    color: #ef233c;
+    color: var(--secondary-color);
     font-size: 1.1em;
     margin: 10px;
 }
@@ -253,38 +492,75 @@ ul.club-list li a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.5; /* Svak gjennomsiktighet på bakgrunnsbildet */
+    opacity: 0.5;
     z-index: 0;
 }
 
-/* Oppdatert stil for mockup-kart */
-#nearby-stores {
+.nearby-stores {
     position: relative;
     height: 400px;
     width: 100%;
     background-color: #e0e0e0;
-    border: 2px solid #333;
+    border: 2px solid var(--text-color);
     border-radius: 5px;
     overflow: hidden;
     margin-top: 10px;
+    display: none;
 }
 
-#nearby-stores .store-marker {
+.nearby-stores.active {
+    display: block;
+}
+
+.nearby-stores .user-position {
     position: absolute;
-    z-index: 10;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: blue;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#nearby-stores .store-label {
-    pointer-events: none; /* Hindrer klikk på etikettene */
+.nearby-stores .store-marker {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 50%;
 }
 
-/* Stiler for Om Oss-siden */
-.about-page .content {
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-    margin-left: 270px; /* Juster for å gi plass til sidebaren */
-    padding: 40px;
+.nearby-stores .store-marker[data-store="coop"] {
+    top: 30%;
+    left: 40%;
+}
+
+.nearby-stores .store-marker[data-store="rema"] {
+    top: 70%;
+    left: 60%;
+}
+
+.nearby-stores .store-marker[data-store="hm"] {
+    top: 40%;
+    left: 70%;
+}
+
+.nearby-stores .store-label {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    color: black;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.nearby-stores .map-info {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: var(--text-color);
+    font-size: 12px;
 }
 
 .about-page .info-box {
@@ -292,32 +568,33 @@ ul.club-list li a:hover {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #8d5524; /* Fin detalj med farget kant */
+    border-left: 5px solid var(--primary-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-page .info-box:hover {
-    transform: translateY(-5px); /* Løfter boksen litt ved hover */
+    transform: translateY(-5px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 .about-page h2 {
     font-size: 2.5em;
-    color: #2b2d42;
+    color: var(--text-color);
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-weight: 600;
 }
 
 .about-page p {
     font-size: 1.1em;
     line-height: 1.8;
-    color: #2b2d42;
+    color: var(--text-color);
     margin-bottom: 15px;
 }
 
 .about-page a {
-    color: #ef233c;
+    color: var(--secondary-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -327,10 +604,145 @@ ul.club-list li a:hover {
     text-decoration: underline;
 }
 
-#savedFilters, #filterName {
-    padding: 8px;
-    font-size: 1em;
-    border-radius: 5px;
-    border: 1px solid #8d5524;
-    margin: 5px;
+/* Responsiv design */
+@media (max-width: 768px) {
+    /* Navigasjon */
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links, .auth-links {
+        flex-direction: column;
+        margin: 10px 0;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .top-nav a {
+        margin: 5px 0;
+    }
+
+    .auth-links a {
+        margin-left: 0;
+    }
+
+    /* Hero-seksjon */
+    .home-page .hero-content {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .home-page .hero-content h1 {
+        font-size: 2em;
+    }
+
+    .home-page .arrow-down {
+        font-size: 1.5em;
+    }
+
+    /* Innhold på hjemmesiden */
+    .home-page .content {
+        padding: 20px;
+    }
+
+    .what-we-do, .plan-videre, .about-us {
+        margin-bottom: 20px;
+    }
+
+    /* Innlogging og registrering */
+    .login-content, .register-page .content {
+        padding: 20px;
+        max-width: 90%;
+        margin-top: 80px;
+    }
+
+    input[type="tel"], input[type="password"] {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 10px 0;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    /* Tilbudsside */
+    .offers-page {
+        flex-direction: column;
+    }
+
+    .offers-page .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+        top: 0;
+        padding: 15px;
+    }
+
+    .offers-page .content {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .offers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .offer-item img {
+        height: 150px;
+    }
+
+    /* Kundeklubber */
+    ul.club-list li {
+        padding: 10px;
+        margin: 5px 0;
+    }
+
+    ul.club-list li img {
+        width: 30px;
+    }
+
+    /* Nærliggende butikker */
+    .nearby-stores {
+        height: 300px;
+    }
+
+    .nearby-stores .store-label {
+        font-size: 10px;
+    }
+
+    /* Om Oss */
+    .about-page .info-box {
+        padding: 20px;
+    }
+
+    .about-page h2 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-page .hero-content h1 {
+        font-size: 1.5em;
+    }
+
+    .animated-title {
+        font-size: 2em;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .offers-grid {
+        grid-template-columns: 1fr;
+    }
 }
