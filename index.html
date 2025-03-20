@@ -4,207 +4,234 @@
     <meta charset="UTF-8">
     <title>Dine Kundeklubber</title>
     <link rel="stylesheet" href="./Style.css">
+    <!-- Legger til Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Legger til Font Awesome for ikoner -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-    <!-- Forside med innlogging -->
-    <div class="login-page active">
-        <div class="login-overlay">
-            <img src="https://images.unsplash.com/photo-1599658880436-c61792e70672?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                 alt="Shopping bilde" class="header-image">
-            <div class="login-content">
-                <h1 class="animated-title">DINE KUNDEKLUBBER</h1>
-                <input type="tel" placeholder="Skriv inn telefonnummer" id="phone"
-                       onkeydown="if(event.key === 'Enter') login()">
-                <br>
-                <input type="password" placeholder="Passord (valgfritt)" id="password"
-                       onkeydown="if(event.key === 'Enter') login()">
-                <br>
-                <button onclick="login()">Logg inn</button>
-                <br>
-                <button onclick="showRegister()">Opprett bruker</button>
-                <p class="error" id="login-error"></p>
+    <!-- Toppnavigasjon -->
+    <div class="top-nav">
+        <div class="nav-container">
+            <h3>Kundeklubbe</h3>
+            <div class="nav-links">
+                <a href="#" id="home-link" onclick="showHome()"><i class="fas fa-home"></i> Hjem</a>
+                <a href="#" id="main-link" onclick="navigateIfLogged('main')"><i class="fas fa-users"></i> Dine kundeklubber</a>
+                <a href="#" id="offers-link" onclick="navigateIfLogged('offers')"><i class="fas fa-tags"></i> Din kundeavis</a>
+                <a href="#" id="about-link" onclick="showAbout()"><i class="fas fa-info-circle"></i> Om Oss</a>
+            </div>
+            <div class="auth-links">
+                <a href="#" id="login-link" onclick="showLogin()">Logg inn</a>
+                <a href="#" id="register-link" onclick="showRegister()">Sign Up</a>
+                <a href="#" id="logout-link" onclick="logout()" style="display: none;">Logg ut</a>
             </div>
         </div>
     </div>
 
+    <!-- Hjemmeside -->
+    <div class="page-container">
+        <div class="home-page active">
+            <!-- Hero-seksjon med bakgrunnsbilde -->
+            <div class="hero-section">
+                <button class="hero-content" onclick="handleHeroClick()">
+                    <h1>Finn dine kundeklubber</h1>
+                </button>
+                <div class="scroll-down">
+                    <span class="arrow-down">↓</span>
+                </div>
+            </div>
+            <!-- Resten av innholdet -->
+            <div class="content">
+                <section class="what-we-do">
+                    <h2>Hva vi gjør</h2>
+                    <p>Vi samler tilbud fra populære butikker, viser deg nærliggende butikker, og gir deg en enkel måte å administrere dine kundeklubbmedlemskap på én plass. Vårt mål er å gjøre shoppingen din enklere og mer lønnsom!</p>
+                </section>
+                <hr></hr>
+                <section class="plan-videre">
+                    <h2>Planer videre</h2>
+                    <p>Dette er som sagt et prosjekt vi har nettopp startet med, så vi har ikke fått tatt med alt vi vil ha.</p>
+                    <p> Men vi har flere ideer som vi jobber med og har lyst å ta med videre utover.</p>
+                    <p>Disse ideene eller hva vi skal videre utvikle er:</p>
+                    <ul>
+                        <li>Implementere push-varsler for nye tilbud</li>
+                        <li>Legge til flere butikker og kundeklubber i tjenesten</li>
+                        <li>Utvikle en mobilapp-versjon av tjenesten</li>
+                        <li>Videreutvikle filtreringssystemet for tilbud</li>
+                    </ul>
+                </section>
+                <hr></hr>
 
-
-    <!-- Registreringsside -->
-    <div class="register-page">
-        <h1>Opprett bruker</h1>
-        <input type="tel" placeholder="Skriv inn telefonnummer" id="new-phone">
-        <br>
-        <input type="password" placeholder="Velg et passord (valgfritt)" id="new-password">
-        <br>
-        <button onclick="register()">Registrer</button>
-        <br>
-        <button onclick="showLogin()">Tilbake til innlogging</button>
-        <p class="error" id="register-error"></p>
-    </div>
-
-
-
-    <!-- Hovedside etter innlogging -->
-    <div class="main-page">
-        <div class="sidebar">
-            <h3>Meny</h3>
-            <a href="#" id="main-link" onclick="showMain()">Dine kundeklubber</a>
-            <a href="#" id="offers-link" onclick="showOffers()">Din kundeavis</a>
-            <a href="#" id="about-link" onclick="showAbout()">Om Oss</a>
-        </div>
-        <div class="content">
-            <h2>Dine kundeklubber</h2>
-            <ul class="club-list">
-                <li><img src="./Bilder/extra logo.png" alt="Coop Extra logo"><a href="https://www.coop.no/medlem?_gl=1*1rin2y1*_up*MQ..*_ga*MjA1OTAwNTE3LjE3NDEzNjk1ODc.*_ga_6RJGSVHQ57*MTc0MTM2OTU4Ny4xLjAuMTc0MTM2OTU4Ny4wLjAuMTg0NjI1MzE4MA.."
-                        target="_blank">Coop Extra</a></li>
-                <li><img src="././Bilder/rema lgoo.jpg" alt="Rema 1000 logo"><a href="https://www.rema.no/"
-                        target="_blank">Rema 1000</a></li>
-                <li><img src="./Bilder/hm loho.png" alt="H&M Club logo"><a
-                        href="https://www2.hm.com/no_no/index.html" target="_blank">H&M Club</a></li>
-                <li><img src="./Bilder/clas ohlson logo.png" alt="Clas Ohlson logo"><a
-                        href="https://www.clasohlson.com/no/clubclas" target="_blank">Clas Ohlson</a></li>
-                <li><img src="./Bilder/Dressmann logo.png" alt="Dressmann logo"><a
-                        href="https://dressmann.com/no/" target="_blank">Dressmann</a></li>
-                <li><img src="./Bilder/power logo.png" alt="Power logo"><a href="https://www.power.no"
-                        target="_blank">Power</a></li>
-                <li><img src="./Bilder/bikbok logo.png" alt="Bik Bok logo"><a href="https://bikbok.com/no/"
-                        target="_blank">Bik Bok</a></li>
-            </ul>
-        </div>
-    </div>
-
-
-
-    <!-- Kundeavis-side -->
-    <div class="offers-page">
-        <div class="sidebar">
-            <h3>Hovedmeny</h3>
-            <a href="#" id="main-link" onclick="showMain()">Tilbake til kundeklubber</a>
-            <a href="#" id="offers-link" onclick="showOffers()">Din kundeavis</a>
-            <a href="#" id="about-link" onclick="showAbout()">Om Oss</a>
-            <div class="filter">
-                <h4>Filtrer:</h4>
-                <input type="checkbox" id="coop" onchange="filterOffers()"> <label for="coop">Coop Extra</label><br>
-                <input type="checkbox" id="rema" onchange="filterOffers()"> <label for="rema">Rema 1000</label><br>
-                <input type="checkbox" id="hm" onchange="filterOffers()"> <label for="hm">H&M Club</label><br>
-                <input type="checkbox" id="clas" onchange="filterOffers()"> <label for="clas">Clas Ohlson</label><br>
-                <input type="checkbox" id="dressmann" onchange="filterOffers()"> <label for="dressmann">Dressmann</label><br>
-                <input type="checkbox" id="power" onchange="filterOffers()"> <label for="power">Power</label><br>
-                <input type="checkbox" id="bikbok" onchange="filterOffers()"> <label for="bikbok">Bik Bok</label><br>
-                <p>Temaer:</p>
-                <input type="checkbox" id="mat" onchange="filterOffers()"> <label for="mat">Mat</label><br>
-                <input type="checkbox" id="klaer" onchange="filterOffers()"> <label for="klaer">Klær</label><br>
-                <input type="checkbox" id="elektronikk" onchange="filterOffers()"> <label for="elektronikk">Elektronikk</label><br>
-                <br>
-                <button onclick="saveFilters()">Lagre</button>
-                <br>
-                <br>
-                <input type="text" id="filterName" placeholder="Navn på filter" style="margin-top: 10px;">
-                <select id="savedFilters" onchange="loadFilters()" style="margin-top: 10px;">
-                    <option value="">Velg lagret filter</option>
-                </select>
+                <section class="about-us">
+                    <h2>Om oss</h2>
+                    <p>Denne nettsiden er et resultat av et skoleprosjekt. Vi er lidenskapelige studenter som ønsker å skape en nyttig løsning for deg. Kontakt oss på: <a href="mailto:@example.com">@example.com</a></p>
+                </section>
             </div>
         </div>
 
-    
-        <div class="content">
-            <h2>Kundeavis</h2>
-            <p>Her er dine deals (simulert fra eTilbudsavis):</p>
-            <ul class="offers-grid" id="offers-list">
-                <li class="offer-item" data-club="coop" data-theme="mat" onclick="trackPreference('coop', 'mat')">
-                    <img src="./Bilder/coop ectra.jpg" alt="Frukt">
-                    <div class="store">Coop Extra</div>
-                    <p>20% rabatt på frukt</p>
-                    <div class="price">Fra 29,90 kr</div>
-                    <div class="valid-until">Gyldig til: 15.03.2025</div>
-                    <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
-                </li>
-                <li class="offer-item" data-club="rema" data-theme="mat" onclick="trackPreference('rema', 'mat')">
-                    <img src="./Bilder/Meny92025_9_2571x885_4801x3273_zoom.jpg" alt="Pizza">
-                    <div class="store">Rema 1000</div>
-                    <p>Kjøp 3 pizzaer, betal for 2</p>
-                    <div class="price">Fra 39,90 kr</div>
-                    <div class="valid-until">Gyldig til: 14.03.2025</div>
-                    <div class="countdown" data-end-date="2025-03-14T23:59:59"></div>
-                </li>
-                <li class="offer-item" data-club="hm" data-theme="klaer" onclick="trackPreference('hm', 'klaer')">
-                    <img src="./Bilder/HM.png" alt="Klær">
-                    <div class="store">H&M Club</div>
-                    <p>10% rabatt på neste kjøp</p>
-                    <div class="price">Fra 199 kr</div>
-                    <div class="valid-until">Gyldig til: 16.03.2025</div>
-                    <div class="countdown" data-end-date="2025-03-16T23:59:59"></div>
-                </li>
-                <li class="offer-item" data-club="clas" data-theme="elektronikk" onclick="trackPreference('clas', 'elektronikk')">
-                    <img src="./Bilder/clas ohlson.jpg" alt="Verktøy">
-                    <div class="store">Clas Ohlson</div>
-                    <p>15% rabatt på verktøy</p>
-                    <div class="price">Fra 149 kr</div>
-                    <div class="valid-until">Gyldig til: 15.03.2025</div>
-                    <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
-                </li>
-                <li class="offer-item" data-club="dressmann" data-theme="klaer" onclick="trackPreference('dressmann', 'klaer')">
-                    <img src="./Bilder/Dressmann.jpg" alt="Dress">
-                    <div class="store">Dressmann</div>
-                    <p>25% rabatt på dresser</p>
-                    <div class="price">Fra 499 kr</div>
-                    <div class="valid-until">Gyldig til: 17.03.2025</div>
-                    <div class="countdown" data-end-date="2025-03-17T23:59:59"></div>
-                </li>
-                <li class="offer-item" data-club="power" data-theme="elektronikk" onclick="trackPreference('power', 'elektronikk')">
-                    <img src="./Bilder/power.jpg" alt="Hodetelefoner">
-                    <div class="store">Power</div>
-                    <p>200 kr avslag på hodetelefoner</p>
-                    <div class="price">Fra 799 kr</div>
-                    <div class="valid-until">Gyldig til: 16.03.2025</div>
-                    <div class="countdown" data-end-date="2025-03-16T23:59:59"></div>
-                </li>
-                <li class="offer-item" data-club="bikbok" data-theme="klaer" onclick="trackPreference('bikbok', 'klaer')">
-                    <img src="./Bilder/Bikbok.jpg" alt="Jeans">
-                    <div class="store">Bik Bok</div>
-                    <p>Kjøp 1 jeans, få 50% på neste</p>
-                    <div class="price">Fra 299 kr</div>
-                    <div class="valid-until">Gyldig til: 15.03.2025</div>
-                    <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
-                </li>
-            </ul>
-            <button onclick="showNearbyStores()">Vis nærliggende butikker</button>
-            <div id="nearby-stores" style="margin-top: 20px; display: none; position: relative; height: 400px; width: 100%; background-color: #e0e0e0; border: 2px solid #333;">
-                <!-- Simulert brukerposisjon -->
-                <div style="position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; background-color: blue; border-radius: 50%; transform: translate(-50%, -50%);"></div>
-                <!-- Simulerte butikkmarkører -->
-                <div class="store-marker" data-store="coop" style="position: absolute; top: 30%; left: 40%; width: 12px; height: 12px; background-color: red; border-radius: 50%;">
-                    <span class="store-label" style="position: absolute; top: -20px; left: -20px; color: black; font-size: 12px; white-space: nowrap;">Coop Extra</span>
+        <!-- Innloggingsside -->
+        <div class="login-page">
+            <div class="login-overlay">
+                <img src="https://images.unsplash.com/photo-1599658880436-c61792e70672?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                     alt="Shopping bilde" class="header-image">
+                <div class="login-content">
+                    <h1 class="animated-title">KUNDEKLUBBEN</h1>
+                    <input type="tel" placeholder="Skriv inn telefonnummer" id="phone"
+                           onkeydown="if(event.key === 'Enter') login()">
+                    <br>
+                    <input type="password" placeholder="Passord (valgfritt)" id="password"
+                           onkeydown="if(event.key === 'Enter') login()">
+                    <br>
+                    <button onclick="login()">Logg inn</button>
+                    <button onclick="showRegister()">Opprett bruker</button>
+                    <p class="error" id="login-error"></p>
                 </div>
-                <div class="store-marker" data-store="rema" style="position: absolute; top: 70%; left: 60%; width: 12px; height: 12px; background-color: red; border-radius: 50%;">
-                    <span class="store-label" style="position: absolute; top: -20px; left: -20px; color: black; font-size: 12px; white-space: nowrap;">Rema 1000</span>
-                </div>
-                <div class="store-marker" data-store="hm" style="position: absolute; top: 40%; left: 70%; width: 12px; height: 12px; background-color: red; border-radius: 50%;">
-                    <span class="store-label" style="position: absolute; top: -20px; left: -20px; color: black; font-size: 12px; white-space: nowrap;">H&M</span>
-                </div>
-                <p style="position: absolute; bottom: 10px; left: 10px; color: #333;">Dette er en mockup av et kart. Blå sirkel = din posisjon, røde sirkler = butikker.</p>
             </div>
         </div>
-    </div>
 
-
-
-    
-    <!-- Om Oss-side -->
-    <div class="about-page">
-        <div class="sidebar">
-            <h3>Meny</h3>
-            <a href="#" id="main-link" onclick="showMain()">Tilbake til kundeklubber</a>
-            <a href="#" id="offers-link" onclick="showOffers()">Din kundeavis</a>
-            <a href="#" id="about-link" onclick="showAbout()">Om Oss</a>
+        <!-- Registreringsside -->
+        <div class="register-page">
+            <div class="content">
+                <h1>Opprett bruker</h1>
+                <input type="tel" placeholder="Skriv inn telefonnummer" id="new-phone">
+                <br>
+                <input type="password" placeholder="Velg et passord (valgfritt)" id="new-password">
+                <br>
+                <button onclick="register()">Registrer</button>
+                <button onclick="showLogin()">Tilbake til innlogging</button>
+                <p class="error" id="register-error"></p>
+            </div>
         </div>
-        <div class="content">
-            <h2>Om Oss</h2>
-            <div class="info-box">
-                <p>Velkommen til Dine Kundeklubber! Vi er et gjeng med studenter som har kommet med en innovasjon eller løsning for dere som sliter med å holde styr på alle klubberer man er medlem på. Vi ville også hjelpe dere med å finne tilbudene fra dine favorittbutikker. Vårt mål er å gjøre shoppingopplevelsen din enklere og mer lønnsom ved å samle tilbud og vise nærliggende butikker.</p>
-                <p>Denne nettsiden er utviklet som en del av et skoleprosjekt. Vi håper du liker å bruke den!</p>
-                <p>Kontakt oss: <a href="mailto:@example.com">@example.com</a></p>
+
+        <!-- Hovedside etter innlogging -->
+        <div class="main-page">
+            <div class="content">
+                <h2>Dine kundeklubber</h2>
+                <ul class="club-list">
+                    <li><img src="./Bilder/extra logo.png" alt="Coop Extra logo"><a href="https://www.coop.no/medlem" target="_blank">Coop Extra</a></li>
+                    <li><img src="./Bilder/rema lgoo.jpg" alt="Rema 1000 logo"><a href="https://www.rema.no/" target="_blank">Rema 1000</a></li>
+                    <li><img src="./Bilder/hm loho.png" alt="H&M Club logo"><a href="https://www2.hm.com/no_no/index.html" target="_blank">H&M Club</a></li>
+                    <li><img src="./Bilder/clas ohlson logo.png" alt="Clas Ohlson logo"><a href="https://www.clasohlson.com/no/clubclas" target="_blank">Clas Ohlson</a></li>
+                    <li><img src="./Bilder/Dressmann logo.png" alt="Dressmann logo"><a href="https://dressmann.com/no/" target="_blank">Dressmann</a></li>
+                    <li><img src="./Bilder/power logo.png" alt="Power logo"><a href="https://www.power.no" target="_blank">Power</a></li>
+                    <li><img src="./Bilder/bikbok logo.png" alt="Bik Bok logo"><a href="https://bikbok.com/no/" target="_blank">Bik Bok</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Kundeavis-side -->
+        <div class="offers-page">
+            <!-- Sidebar for filtrering -->
+            <div class="sidebar">
+                <h3>Filtrer tilbud</h3>
+                <h4>Klubber:</h4>
+                <label><input type="checkbox" class="filter-club" data-club="coop"> Coop Extra</label><br>
+                <label><input type="checkbox" class="filter-club" data-club="rema"> Rema 1000</label><br>
+                <label><input type="checkbox" class="filter-club" data-club="hm"> H&M Club</label><br>
+                <label><input type="checkbox" class="filter-club" data-club="clas"> Clas Ohlson</label><br>
+                <label><input type="checkbox" class="filter-club" data-club="dressmann"> Dressmann</label><br>
+                <label><input type="checkbox" class="filter-club" data-club="power"> Power</label><br>
+                <label><input type="checkbox" class="filter-club" data-club="bikbok"> Bik Bok</label><br>
+                <h4>Temaer:</h4>
+                <label><input type="checkbox" class="filter-theme" data-theme="mat"> Mat</label><br>
+                <label><input type="checkbox" class="filter-theme" data-theme="klaer"> Klær</label><br>
+                <label><input type="checkbox" class="filter-theme" data-theme="elektronikk"> Elektronikk</label><br>
+                <input type="text" id="filter-name" placeholder="Navn på filter" style="width: 200px; margin: 10px 0;">
+                <button onclick="saveAndApplyFilters()">Lagre og filtrer</button>
+                <div id="saved-filters" style="margin-top: 10px;">
+                    <h4>Lagrede filtre:</h4>
+                    <ul id="filter-list"></ul>
+                </div>
+            </div>
+            <!-- Hovedinnhold -->
+            <div class="content">
+                <h2>Kundeavis</h2>
+                <p>Her er dine deals (simulert fra eTilbudsavis):</p>
+                <ul class="offers-grid" id="offers-list">
+                    <li class="offer-item" data-club="coop" data-theme="mat" onclick="trackPreference('coop', 'mat')">
+                        <img src="./Bilder/coop ectra.jpg" alt="Frukt">
+                        <div class="store">Coop Extra</div>
+                        <p>20% rabatt på frukt</p>
+                        <div class="price">Fra 29,90 kr</div>
+                        <div class="valid-until">Gyldig til: 15.03.2025</div>
+                        <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
+                    </li>
+                    <li class="offer-item" data-club="rema" data-theme="mat" onclick="trackPreference('rema', 'mat')">
+                        <img src="./Bilder/Meny92025_9_2571x885_4801x3273_zoom.jpg" alt="Pizza">
+                        <div class="store">Rema 1000</div>
+                        <p>Kjøp 3 pizzaer, betal for 2</p>
+                        <div class="price">Fra 39,90 kr</div>
+                        <div class="valid-until">Gyldig til: 14.03.2025</div>
+                        <div class="countdown" data-end-date="2025-03-14T23:59:59"></div>
+                    </li>
+                    <li class="offer-item" data-club="hm" data-theme="klaer" onclick="trackPreference('hm', 'klaer')">
+                        <img src="./Bilder/HM.png" alt="Klær">
+                        <div class="store">H&M Club</div>
+                        <p>10% rabatt på neste kjøp</p>
+                        <div class="price">Fra 199 kr</div>
+                        <div class="valid-until">Gyldig til: 16.03.2025</div>
+                        <div class="countdown" data-end-date="2025-03-16T23:59:59"></div>
+                    </li>
+                    <li class="offer-item" data-club="clas" data-theme="elektronikk" onclick="trackPreference('clas', 'elektronikk')">
+                        <img src="./Bilder/clas ohlson.jpg" alt="Verktøy">
+                        <div class="store">Clas Ohlson</div>
+                        <p>15% rabatt på verktøy</p>
+                        <div class="price">Fra 149 kr</div>
+                        <div class="valid-until">Gyldig til: 15.03.2025</div>
+                        <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
+                    </li>
+                    <li class="offer-item" data-club="dressmann" data-theme="klaer" onclick="trackPreference('dressmann', 'klaer')">
+                        <img src="./Bilder/Dressmann.jpg" alt="Dress">
+                        <div class="store">Dressmann</div>
+                        <p>25% rabatt på dresser</p>
+                        <div class="price">Fra 499 kr</div>
+                        <div class="valid-until">Gyldig til: 17.03.2025</div>
+                        <div class="countdown" data-end-date="2025-03-17T23:59:59"></div>
+                    </li>
+                    <li class="offer-item" data-club="power" data-theme="elektronikk" onclick="trackPreference('power', 'elektronikk')">
+                        <img src="./Bilder/power.jpg" alt="Hodetelefoner">
+                        <div class="store">Power</div>
+                        <p>200 kr avslag på hodetelefoner</p>
+                        <div class="price">Fra 799 kr</div>
+                        <div class="valid-until">Gyldig til: 16.03.2025</div>
+                        <div class="countdown" data-end-date="2025-03-16T23:59:59"></div>
+                    </li>
+                    <li class="offer-item" data-club="bikbok" data-theme="klaer" onclick="trackPreference('bikbok', 'klaer')">
+                        <img src="./Bilder/Bikbok.jpg" alt="Jeans">
+                        <div class="store">Bik Bok</div>
+                        <p>Kjøp 1 jeans, få 50% på neste</p>
+                        <div class="price">Fra 299 kr</div>
+                        <div class="valid-until">Gyldig til: 15.03.2025</div>
+                        <div class="countdown" data-end-date="2025-03-15T23:59:59"></div>
+                    </li>
+                </ul>
+                <button onclick="showNearbyStores()">Vis nærliggende butikker</button>
+                <div id="nearby-stores" class="nearby-stores">
+                    <!-- Simulert brukerposisjon -->
+                    <div class="user-position"></div>
+                    <!-- Simulerte butikkmarkører -->
+                    <div class="store-marker" data-store="coop">
+                        <span class="store-label">Coop Extra</span>
+                    </div>
+                    <div class="store-marker" data-store="rema">
+                        <span class="store-label">Rema 1000</span>
+                    </div>
+                    <div class="store-marker" data-store="hm">
+                        <span class="store-label">H&M</span>
+                    </div>
+                    <p class="map-info">Dette er en mockup av et kart. Blå sirkel = din posisjon, røde sirkler = butikker.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Om Oss-side -->
+        <div class="about-page">
+            <div class="content">
+                <h2>Om Oss</h2>
+                <div class="info-box">
+                    <p>Velkommen til Dine Kundeklubber! Vi er et gjeng med studenter som har kommet med en innovasjon eller løsning for dere som sliter med å holde styr på alle klubber man er medlem på. Vi ville også hjelpe dere med å finne tilbudene fra dine favorittbutikker. Vårt mål er å gjøre shoppingopplevelsen din enklere og mer lønnsom ved å samle tilbud og vise nærliggende butikker.</p>
+                    <p>Denne nettsiden er utviklet som en del av et skoleprosjekt. Vi håper du liker å bruke den!</p>
+                    <p>Kontakt oss: <a href="mailto:@example.com">@example.com</a></p>
+                </div>
             </div>
         </div>
     </div>
