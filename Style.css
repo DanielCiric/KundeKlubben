@@ -84,8 +84,8 @@ body {
 #wishlist-section {
     display: none; /* Skjules som standard */
     padding: 10px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    background-color: #251e1e;
+    border: 1px solid #28283a;
     border-radius: 5px;
 }
 
