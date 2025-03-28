@@ -20,6 +20,63 @@ function updateNavigation() {
         logoutLink.style.display = 'none';
     }
 }
+document.addEventListener("DOMContentLoaded", function () {
+    let wishlistToggle = document.getElementById('wishlist-toggle');
+    let wishlistSection = document.getElementById('wishlist-section');
+    let wishlistInput = document.getElementById('wishlist-input');
+    let addWishlistBtn = document.getElementById('add-wishlist');
+    let wishlistList = document.getElementById('wishlist-list');
+
+    // Toggle for å vise/skjule ønskeliste-seksjonen
+    wishlistToggle.addEventListener('click', function () {
+        wishlistSection.classList.toggle('hidden');
+    });
+
+    // Legge til elementer i ønskelisten
+    addWishlistBtn.addEventListener('click', function () {
+        let keyword = wishlistInput.value.trim();
+        if (keyword !== '') {
+            let listItem = document.createElement('li');
+            listItem.textContent = keyword;
+            wishlistList.appendChild(listItem);
+            wishlistInput.value = '';
+        }
+    });
+});
+document.getElementById("wishlist-toggle").addEventListener("click", function () {
+    let wishlistSection = document.getElementById("wishlist-section");
+    if (wishlistSection.style.display === "none" || wishlistSection.style.display === "") {
+        wishlistSection.style.display = "block";
+    } else {
+        wishlistSection.style.display = "none";
+    }
+});
+document.getElementById("add-wishlist").addEventListener("click", function () {
+    let input = document.getElementById("wishlist-input").value.trim();
+    let sendAlert = document.getElementById("wishlist-alert").checked;
+    let list = document.getElementById("wishlist-list");
+
+    if (input === "") return; // Unngå tomme elementer
+
+    let li = document.createElement("li");
+    li.classList.add("wishlist-item");
+    
+    li.innerHTML = `
+        ${input} ${sendAlert ? "<span style='color: green;'>(🔔 Varsel aktivert)</span>" : ""}
+        <button class="remove-wishlist">❌</button>
+    `;
+
+    list.appendChild(li);
+    document.getElementById("wishlist-input").value = ""; // Tøm input-feltet
+    document.getElementById("wishlist-alert").checked = false; // Nullstill checkbox
+
+    // Fjern element når man trykker på ❌
+    li.querySelector(".remove-wishlist").addEventListener("click", function () {
+        li.remove();
+    });
+
+    // TODO: Implementer faktisk varslingsfunksjonalitet
+});
 
 // Funksjon for å vise hjemmesiden
 function showHome() {
@@ -268,10 +325,29 @@ function startCountdowns() {
     });
 }
 
+const darkModeToggle = document.getElementById("dark-mode-toggle");
+const body = document.body;
 
+// Sjekk om Dark Mode er lagret fra før
+// Sjekk om Dark Mode er aktivert fra før
+if (localStorage.getItem("darkMode") === "enabled") {
+    body.classList.add("dark-mode");
+    darkModeToggle.checked = true;
+}
 
+// Når knappen trykkes, bytt mellom dark/light mode
+darkModeToggle.addEventListener("change", () => {
+    body.classList.toggle("dark-mode");
+    
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        localStorage.setItem("darkMode", "disabled");
+    }
+});
 
 // Initial load
 showHome();
 updateNavigation();
 updateFilterList();
+////
