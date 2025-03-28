@@ -16,6 +16,13 @@
     <div class="top-nav">
         <div class="nav-container">
             <h3>Kundeklubbe</h3>
+            <!-- Wrapper for midtstilt Dark Mode-toggle -->
+            <div class="dark-mode-toggle-container">
+                <div class="checkbox-apple">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <label for="dark-mode-toggle"></label>
+                </div>
+            </div>
             <div class="nav-links">
                 <a href="#" id="home-link" onclick="showHome()"><i class="fas fa-home"></i> Hjem</a>
                 <a href="#" id="main-link" onclick="navigateIfLogged('main')"><i class="fas fa-users"></i> Dine
@@ -31,6 +38,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Hjemmeside -->
     <div class="page-container">
@@ -140,11 +148,22 @@
         </div>
 
 
-
         <!-- Kundeavis-side -->
         <div class="offers-page">
             <!-- Sidebar for filtrering -->
             <div class="sidebar">
+                <div class="wishlist-container">
+                    <button id="wishlist-toggle">Fremtidige ønsker</button>
+                    <div id="wishlist-section" class="hidden">
+                        <input type="text" id="wishlist-input" placeholder="Skriv inn ønsket produkt...">
+                        <label>
+                            <input type="checkbox" id="wishlist-alert"> Send Varsel
+                        </label>
+                        <button id="add-wishlist">Legg til</button>
+                        <ul id="wishlist-list"></ul>
+                    </div>
+                </div>
+                
                 <h3>Filtrer tilbud</h3>
                 <h4>Klubber:</h4>
                 <label><input type="checkbox" class="filter-club" data-club="coop"> Coop Extra</label><br>
@@ -165,6 +184,7 @@
                     <ul id="filter-list"></ul>
                 </div>
             </div>
+            
 
             <!-- Hovedinnhold -->
             <div class="content">
@@ -252,8 +272,8 @@
             </div>
         </div>
 
-        
-        
+
+
         <!-- Om Oss-side -->
         <div class="about-page">
             <div class="content">
@@ -275,3 +295,4 @@
 </body>
 
 </html>
+
