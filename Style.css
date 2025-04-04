@@ -41,7 +41,7 @@ body {
     width: 99%;
     height: 60px; /* Øker høyden */
     z-index: 1000;
-    background-color: var(--header-background-color);
+    background-color: #bca4a470;
     display: flex;
     align-items: center; /* Sentraliserer innholdet vertikalt */
     padding: 0 20px;
